@@ -37,11 +37,39 @@ function addBookToLibrary() {
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
     // console.log(newBook);
-    console.log(newBook.info());
-    console.log(myLibrary);
+    // console.log(newBook.info());
+    // console.log(myLibrary);
 }
 
 
 addBookToLibrary();
 addBookToLibrary();
 addBookToLibrary();
+
+// function to loop through array of books and display each book
+function displayBooks() {
+    // *NOTE* maybe change to forEach() loop so I can use index of the library array to remove books
+    for (book of myLibrary) {
+        console.log(book);
+    }
+}
+
+displayBooks();
+
+// TO DO!!!!!
+
+// Add dummy books to array
+
+// Add HTML and CSS to format cards on page
+
+// Update JS to show correct info on cards
+
+// Add "NEW BOOK" button and figure out how to bring up a form for inputting book info
+
+// Format form and fix error when trying to submit (event.preventDefault();)
+
+// Add button on each book's display to remove the book from the library
+
+// Add button on each book's display to change it's read status
+
+// Finish UI!!!!!!!!!!!!!
