@@ -64,7 +64,7 @@ function addBookToLibrary() {
 // function to loop through array of books and display each book
 function displayBooks() {
     // *NOTE* maybe change to forEach() loop so I can use index of the library array to remove books
-    for (book of myLibrary) {
+    myLibrary.forEach((book, index) => {
         let bookCard = document.createElement('div');
         bookCard.classList.add("book-card");
         bookContainer.appendChild(bookCard);
@@ -90,6 +90,7 @@ function displayBooks() {
 
         let isReadButton = document.createElement('button');
         let removeButton = document.createElement('button');
+        removeButton.classList.add("remove-btn");
         isReadDisplay.appendChild(isReadButton);
         removeDisplay.appendChild(removeButton);
 
@@ -98,7 +99,12 @@ function displayBooks() {
         pageDisplay.textContent = book.pages + ' pages';
         isReadButton.textContent = 'Read';
         removeButton.textContent = 'Remove';
-    }
+
+        removeButton.addEventListener('click', function (e) {
+            myLibrary.splice(index, 1);
+            bookContainer.removeChild(bookCard);
+        });
+    });
 }
 
 // create add book button
@@ -126,6 +132,7 @@ addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
 displayBooks();
 
+// Adding books to library with submit
 submitButton.addEventListener('click', (e) => {
     addBookToLibrary();
     closeForm();
@@ -135,17 +142,18 @@ submitButton.addEventListener('click', (e) => {
     authorInput.value = '';
     pagesInput.value = '';
     isReadInput.checked = false;
-})
+});
+
 
 // TO DO!!!!!
 
-// Update JS to show correct info on cards
-
-// Format form and fix error when trying to submit (event.preventDefault();)
-
-// Add button on each book's display to remove the book from the library
-
 // Add button on each book's display to change it's read status
+
+// Add errors when trying to submit a blank form
+
+// add character limits on inputs
+
+// fix add new book button showing through
 
 // Finish UI!!!!!!!!!!!!!
 
