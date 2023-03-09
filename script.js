@@ -95,9 +95,9 @@ let buttonText = document.createElement('div');
 buttonText.textContent = 'Add Book';
 let plusImage = document.createElement('img');
 plusImage.src = "images/plus.svg";
-addBookButton.appendChild(buttonText);
-addBookButton.appendChild(plusImage);
 
+addBookButton.appendChild(plusImage);
+addBookButton.appendChild(buttonText);
 displayBooks();
 
 // TO DO!!!!!

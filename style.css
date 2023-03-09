@@ -92,9 +92,21 @@ button {
 .add-book-btn div {
     font-size: 30px;
     font-weight: bold;
+    padding-top: 5px;
 }
 
 .add-book-btn img {
     width: 100px;
     filter: var(--icon-filter);
+    padding-bottom: 5px;
+}
+
+.book-card {
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px var(--primary-color);
+}
+
+.add-book-btn {
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px var(--text-color);
 }
