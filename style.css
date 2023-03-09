@@ -89,17 +89,33 @@ button {
     background-color: var(--primary-color);
 }
 
+.add-book-btn:hover {
+    background-color: rgb(110, 204, 175, .75);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.add-book-btn:active {
+    background-color: var(--primary-color);
+/*     box-shadow: 1px 1px 3px var(--text-color);
+    transform: translateY(.5px);
+    transform: translateX(.5px); */
+    transition: .2s;
+}
+
 .add-book-btn div {
     font-size: 30px;
     font-weight: bold;
-    padding-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .add-book-btn img {
     width: 100px;
     filter: var(--icon-filter);
-    padding-bottom: 5px;
 }
+
+/* book card borders */
 
 .book-card {
     border-radius: 25px;
