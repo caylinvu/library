@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #6ECCAF;
+    --secondary-color: #ADE792;
+    --background-color: #F3ECB0;
+    --read: #91D491;
+    --not-read: #FF7575;
+    --text-color: #344D67;
+}
+
+body {
+    margin: 0;
+    font-family:'Courier New', Courier, monospace;
+    background-color: var(--background-color);
+}
+
+.header {
+    background-color: var(--primary-color);
+    padding: 40px;
+}
+
+.header p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 40px;
+    font-weight: bold;
+}

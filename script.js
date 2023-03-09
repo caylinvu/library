@@ -25,8 +25,12 @@ Book.prototype.info = function () {
     }
 }
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'false')
-console.log(theHobbit.info())
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'false');
+const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', 'false');
+const eyeOfTheWorld = new Book('The Eye of the World', 'Robert Jordan', '832', 'false');
+const wildBuilt = new Book('A Psalm for the Wild-Built', 'Becky Chambers', '160', 'true');
+
+myLibrary.push(theHobbit, gameOfThrones);
 
 // function to prompt user to add a book to the library
 function addBookToLibrary() {
@@ -40,11 +44,6 @@ function addBookToLibrary() {
     // console.log(newBook.info());
     // console.log(myLibrary);
 }
-
-
-addBookToLibrary();
-addBookToLibrary();
-addBookToLibrary();
 
 // function to loop through array of books and display each book
 function displayBooks() {
