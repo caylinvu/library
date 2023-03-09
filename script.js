@@ -1,4 +1,5 @@
 const bookContainer = document.querySelector('.book-container');
+const form = document.querySelector('.form-popup');
 let myLibrary = [];
 let title = '';
 let author = '';
@@ -89,6 +90,7 @@ function displayBooks() {
     }
 }
 
+// create add book button
 let addBookButton = document.createElement('button');
 addBookButton.classList.add("add-book-btn");
 let buttonText = document.createElement('div');
@@ -96,14 +98,24 @@ buttonText.textContent = 'Add Book';
 let plusImage = document.createElement('img');
 plusImage.src = "images/plus.svg";
 
+// create pop up form
+addBookButton.setAttribute('onclick', 'openForm()');
+
+// function to display pop up form
+function openForm() {
+    form.style.display = "block";
+}
+
+// function to close pop up form
+function closeForm() {
+    form.style.display = "none";
+}
+
 addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
 displayBooks();
 
 // TO DO!!!!!
-
-// RESTRUCTURE BOOK CARD DIVS TO HAVE 2 MAIN DIVS FOR BOOK INFO AND BUTTONS
-// ALSO FIX SPACING SO BUTTONS REMAIN AT THE BOTTOM IS LONG TEXT IS ADDED
 
 // Update JS to show correct info on cards
 
@@ -116,3 +128,9 @@ displayBooks();
 // Add button on each book's display to change it's read status
 
 // Finish UI!!!!!!!!!!!!!
+
+// Update add book animation if want to
+
+// Add date completed???
+
+// add mobile support

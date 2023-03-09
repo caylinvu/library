@@ -16,7 +16,8 @@ body {
     font-size: 18px;
 }
 
-button {
+button,
+input {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
@@ -24,7 +25,12 @@ button {
 
 .header {
     background-color: var(--primary-color);
-    padding: 40px 100px;
+    padding: 30px 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    width:
 }
 
 .logo-container {
@@ -34,18 +40,37 @@ button {
 }
 
 .logo-container img {
-    width: 80px;
+    width: 70px;
     filter: var(--icon-filter);
 }
 
 .logo-container p {
     margin: 0;
-    font-size: 50px;
+    font-size: 60px;
+    font-family: 'Lobster', monospace;
+}
+
+.log-in-btn {
+    border: none;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 15px 20px;
     font-weight: bold;
 }
 
+.log-in-btn:hover {
+    background-color: rgb(173, 231, 146, .75);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.log-in-btn:active {
+    background-color: var(--secondary-color);
+    transition: .2s;
+}
+
 .main-content {
-    padding: 40px 100px;
+    padding: 40px 200px;
 }
 
 .book-container {
@@ -125,4 +150,48 @@ button {
 .add-book-btn {
     border-radius: 25px;
     box-shadow: 2px 2px 5px var(--text-color);
+}
+
+/* pop-up form */
+
+.form-popup {
+    position: absolute;
+    z-index: 1;
+}
+
+.form-container {
+    padding: 30px;
+    text-align: center;
+    background-color: var(--primary-color);
+    font-size: 18px;
+}
+
+.form-title {
+    padding-bottom: 20px;
+}
+
+.form-div {
+    padding-bottom: 15px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text-input,
+.number-input {
+    padding: 5px 10px;
+}
+
+.checkbox-container {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.checkbox-input {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    vertical-align: middle;
 }

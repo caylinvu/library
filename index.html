@@ -4,16 +4,40 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Library</title>
+        <title>Virtual Library</title>
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div class="form-popup">
+            <form action="" method="post" class="form-container">
+                <div class="form-title">Add New Book</div>
+                <div class="form-div">
+                    <input type="text" id="title" name="title" class="text-input">
+                </div>
+                <div class="form-div">
+                    <input type="text" id="author" name="author" class="text-input">
+                </div>
+                <div class="form-div">
+                    <input type="number" id="pages" name="pages" class="number-input">
+                </div>
+                <div class="checkbox-container">
+                    <label for="isRead">Have you read it?</label>
+                    <input type="checkbox" id="isRead" name="isRead" class="checkbox-input">
+                </div>
+                <div class="submit-container">
+                    <button class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
         <div class="header">
             <div class="logo-container">
                 <img src="images/library.svg" alt="library icon">
-                <p>Library</p>
+                <p>Virtual Library</p>
             </div>
-            <div class="log-in"></div>
+            <div class="log-in">
+                <button class="log-in-btn">Log In</button>
+            </div>
         </div>
         <div class="main-content">
             <div class="info-container"></div>
