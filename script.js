@@ -1,3 +1,4 @@
+const bookContainer = document.querySelector('.book-container');
 let myLibrary = [];
 let title = '';
 let author = '';
@@ -29,8 +30,11 @@ const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'false');
 const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', 'false');
 const eyeOfTheWorld = new Book('The Eye of the World', 'Robert Jordan', '832', 'false');
 const wildBuilt = new Book('A Psalm for the Wild-Built', 'Becky Chambers', '160', 'true');
+const moreOfLess = new Book('The More of Less', 'Joshua Becker', '203', 'false');
+const dinosaurs = new Book('The Rise and Fall of the Dinosaurs', 'Steve Brusatte', '360', 'false');
+const sixthExtinction = new Book('The Sixth Extinction', 'Elizabeth Kolbert', '290', 'false');
 
-myLibrary.push(theHobbit, gameOfThrones);
+myLibrary.push(theHobbit, gameOfThrones, eyeOfTheWorld, wildBuilt, moreOfLess, dinosaurs, sixthExtinction);
 
 // function to prompt user to add a book to the library
 function addBookToLibrary() {
@@ -49,6 +53,28 @@ function addBookToLibrary() {
 function displayBooks() {
     // *NOTE* maybe change to forEach() loop so I can use index of the library array to remove books
     for (book of myLibrary) {
+        let bookCard = document.createElement('div');
+        bookCard.classList.add("book-card");
+        bookContainer.appendChild(bookCard);
+
+        let titleDisplay = document.createElement('div');
+        let authorDisplay = document.createElement('div');
+        let pageDisplay = document.createElement('div');
+        let isReadButton = document.createElement('button');
+        let removeButton = document.createElement('button');
+
+        bookCard.appendChild(titleDisplay);
+        bookCard.appendChild(authorDisplay);
+        bookCard.appendChild(pageDisplay);
+        bookCard.appendChild(isReadButton);
+        bookCard.appendChild(removeButton);
+
+        titleDisplay.textContent = book.title;
+        authorDisplay.textContent = book.author;
+        pageDisplay.textContent = book.pages;
+        isReadButton.textContent = 'Read';
+        removeButton.textContent = 'Remove';
+
         console.log(book);
     }
 }

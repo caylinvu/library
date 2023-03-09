@@ -15,7 +15,7 @@ body {
 
 .header {
     background-color: var(--primary-color);
-    padding: 40px;
+    padding: 40px 100px;
 }
 
 .header p {
@@ -23,4 +23,22 @@ body {
     color: var(--text-color);
     font-size: 40px;
     font-weight: bold;
+}
+
+.main-content {
+    padding: 40px 100px;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-auto-rows: 1fr;
+    gap: 50px;
+    justify-content: center;
+}
+
+.book-card {
+    background-color: var(--secondary-color);
+    width: 300px;
+    height: 300px;
 }
