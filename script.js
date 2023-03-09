@@ -1,5 +1,10 @@
 const bookContainer = document.querySelector('.book-container');
 const form = document.querySelector('.form-popup');
+const titleInput = document.getElementById('title');
+const authorInput = document.getElementById('author');
+const pagesInput = document.getElementById('pages');
+const isReadInput = document.getElementById('is-read');
+const submitButton = document.getElementById('submit-btn');
 let myLibrary = [];
 let title = '';
 let author = '';
@@ -14,7 +19,7 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-Book.prototype.info = function () {
+/* Book.prototype.info = function () {
     switch(this.isRead) {
         case "true":
             return this.title + " by " + this.author + ", " + this.pages + " pages, read";
@@ -25,7 +30,7 @@ Book.prototype.info = function () {
         default:
             return "Book info is not valid";
     }
-}
+} */
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'false');
 const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', 'false');
@@ -39,12 +44,18 @@ myLibrary.push(theHobbit, gameOfThrones, eyeOfTheWorld, wildBuilt, moreOfLess, d
 
 // function to prompt user to add a book to the library
 function addBookToLibrary() {
-    title = prompt('What is the title of the book?', '');
-    author = prompt('Who is the author of the book?', '');
-    pages = prompt('How many pages are in the book?', '');
-    isRead = prompt('Have you read the book?', '');
+    title = titleInput.value;
+    author = authorInput.value;
+    pages = pagesInput.value;
+    isRead = isReadInput.checked;
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
+    
+    while(bookContainer.firstChild) {
+        bookContainer.removeChild(bookContainer.firstChild);
+    }
+
+    displayBooks();
     // console.log(newBook);
     // console.log(newBook.info());
     // console.log(myLibrary);
@@ -115,11 +126,20 @@ addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
 displayBooks();
 
+submitButton.addEventListener('click', (e) => {
+    addBookToLibrary();
+    closeForm();
+    e.preventDefault();
+
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    isReadInput.checked = false;
+})
+
 // TO DO!!!!!
 
 // Update JS to show correct info on cards
-
-// Add "NEW BOOK" button and figure out how to bring up a form for inputting book info
 
 // Format form and fix error when trying to submit (event.preventDefault();)
 
