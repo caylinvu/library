@@ -155,8 +155,12 @@ input {
 /* pop-up form */
 
 .form-popup {
-    position: absolute;
+    display: none;
+    position: fixed;
     z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .form-container {
@@ -166,8 +170,28 @@ input {
     font-size: 18px;
 }
 
+.close-container {
+    text-align: end;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.close-btn {
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+
+.close-icon {
+    width: 30px;
+    filter: var(--icon-filter);
+}
+
 .form-title {
     padding-bottom: 20px;
+    padding-top: -20px;
 }
 
 .form-div {
