@@ -5,12 +5,21 @@
     --read: #91D491;
     --not-read: #FF7575;
     --text-color: #344D67;
+    --icon-filter: invert(28%) sepia(10%) saturate(2262%) hue-rotate(170deg) brightness(86%) contrast(85%);
 }
 
 body {
     margin: 0;
     font-family:'Courier New', Courier, monospace;
     background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
 }
 
 .header {
@@ -18,10 +27,20 @@ body {
     padding: 40px 100px;
 }
 
-.header p {
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    width: 80px;
+    filter: var(--icon-filter);
+}
+
+.logo-container p {
     margin: 0;
-    color: var(--text-color);
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -39,6 +58,43 @@ body {
 
 .book-card {
     background-color: var(--secondary-color);
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+}
+
+.book-info,
+.button-container {
+    text-align: center;
+}
+
+.book-info div {
+    padding-bottom: 20px;
+}
+
+.button-container div {
+    padding-top: 10px;
+}
+
+.button-container button {
+    width: 150px;
+}
+
+.add-book-btn {
+    border: none;
+    padding: 0;
+    background-color: var(--primary-color);
+}
+
+.add-book-btn div {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.add-book-btn img {
+    width: 100px;
+    filter: var(--icon-filter);
 }

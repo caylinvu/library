@@ -56,36 +56,54 @@ function displayBooks() {
         let bookCard = document.createElement('div');
         bookCard.classList.add("book-card");
         bookContainer.appendChild(bookCard);
+        bookContainer.appendChild(addBookButton);
+
+        let bookInfo = document.createElement('div');
+        let buttonContainer = document.createElement('div');
+        bookInfo.classList.add("book-info");
+        buttonContainer.classList.add("button-container");
+        bookCard.appendChild(bookInfo);
+        bookCard.appendChild(buttonContainer);
 
         let titleDisplay = document.createElement('div');
         let authorDisplay = document.createElement('div');
         let pageDisplay = document.createElement('div');
+        let isReadDisplay = document.createElement('div');
+        let removeDisplay = document.createElement('div');
+        bookInfo.appendChild(titleDisplay);
+        bookInfo.appendChild(authorDisplay);
+        bookInfo.appendChild(pageDisplay);
+        buttonContainer.appendChild(isReadDisplay);
+        buttonContainer.appendChild(removeDisplay);
+
         let isReadButton = document.createElement('button');
         let removeButton = document.createElement('button');
-
-        bookCard.appendChild(titleDisplay);
-        bookCard.appendChild(authorDisplay);
-        bookCard.appendChild(pageDisplay);
-        bookCard.appendChild(isReadButton);
-        bookCard.appendChild(removeButton);
+        isReadDisplay.appendChild(isReadButton);
+        removeDisplay.appendChild(removeButton);
 
         titleDisplay.textContent = book.title;
         authorDisplay.textContent = book.author;
-        pageDisplay.textContent = book.pages;
+        pageDisplay.textContent = book.pages + ' pages';
         isReadButton.textContent = 'Read';
         removeButton.textContent = 'Remove';
-
-        console.log(book);
     }
 }
+
+let addBookButton = document.createElement('button');
+addBookButton.classList.add("add-book-btn");
+let buttonText = document.createElement('div');
+buttonText.textContent = 'Add Book';
+let plusImage = document.createElement('img');
+plusImage.src = "images/plus.svg";
+addBookButton.appendChild(buttonText);
+addBookButton.appendChild(plusImage);
 
 displayBooks();
 
 // TO DO!!!!!
 
-// Add dummy books to array
-
-// Add HTML and CSS to format cards on page
+// RESTRUCTURE BOOK CARD DIVS TO HAVE 2 MAIN DIVS FOR BOOK INFO AND BUTTONS
+// ALSO FIX SPACING SO BUTTONS REMAIN AT THE BOTTOM IS LONG TEXT IS ADDED
 
 // Update JS to show correct info on cards
 
