@@ -176,7 +176,7 @@ submitButton.addEventListener('click', (e) => {
 
 // TO DO!!!!!
 
-// Add button on each book's display to change it's read status
+// Make read button change when clicked
 
 // Add errors when trying to submit a blank form
 

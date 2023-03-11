@@ -2,9 +2,9 @@
     --primary-color: #6ECCAF;
     --secondary-color: #ADE792;
     --background-color: #F3ECB0;
-    --read: #91D491;
-    --not-read: #FF7575;
-    --text-color: #344D67;
+    --read: #6ECCAF;
+    --not-read: #f09393;
+    --text-color: #4e3467;
     --icon-filter: invert(28%) sepia(10%) saturate(2262%) hue-rotate(170deg) brightness(86%) contrast(85%);
 }
 
@@ -115,6 +115,31 @@ input {
     padding: 10px 0px;
     width: 260px;
     
+}
+
+.has-read {
+    background-color: var(--read);
+}
+
+.has-read:hover {
+    background-color: rgb(110, 204, 175, .75);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.not-read {
+    background-color: var(--background-color);
+}
+
+.remove-btn {
+    background-color: var(--background-color);
+}
+
+.not-read:hover,
+.remove-btn:hover {
+    background-color: rgb(243, 236, 176, .75);
+    cursor: pointer;
+    transition: .2s;
 }
 
 /* ----------ADD BOOK BUTTON---------- */
