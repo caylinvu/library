@@ -19,6 +19,21 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+Book.prototype.readInfo = function (button) {
+    if (this.isRead == true) {
+        button.classList.remove("not-read");
+        button.classList.add("has-read");
+
+        button.textContent = 'Read';
+    } else if (this.isRead == false) {
+        button.classList.remove("has-read");
+        button.classList.add("not-read");
+
+        button.textContent = 'Not Read';
+    }
+    console.log(this);
+}
+
 /* Book.prototype.info = function () {
     switch(this.isRead) {
         case "true":
@@ -32,13 +47,13 @@ function Book(title, author, pages, isRead) {
     }
 } */
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'false');
-const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', 'false');
-const eyeOfTheWorld = new Book('The Eye of the World', 'Robert Jordan', '832', 'false');
-const wildBuilt = new Book('A Psalm for the Wild-Built', 'Becky Chambers', '160', 'true');
-const moreOfLess = new Book('The More of Less', 'Joshua Becker', '203', 'false');
-const dinosaurs = new Book('The Rise and Fall of the Dinosaurs', 'Steve Brusatte', '360', 'false');
-const sixthExtinction = new Book('The Sixth Extinction', 'Elizabeth Kolbert', '290', 'false');
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', false);
+const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', false);
+const eyeOfTheWorld = new Book('The Eye of the World', 'Robert Jordan', '832', true);
+const wildBuilt = new Book('A Psalm for the Wild-Built', 'Becky Chambers', '160', true);
+const moreOfLess = new Book('The More of Less', 'Joshua Becker', '203', false);
+const dinosaurs = new Book('The Rise and Fall of the Dinosaurs', 'Steve Brusatte', '360', false);
+const sixthExtinction = new Book('The Sixth Extinction', 'Elizabeth Kolbert', '290', true);
 
 myLibrary.push(theHobbit, gameOfThrones, eyeOfTheWorld, wildBuilt, moreOfLess, dinosaurs, sixthExtinction);
 
@@ -48,9 +63,11 @@ function addBookToLibrary() {
     author = authorInput.value;
     pages = pagesInput.value;
     isRead = isReadInput.checked;
+    /* console.log(isRead); */
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
-    
+    /* console.log(newBook); */
+
     while(bookContainer.firstChild) {
         bookContainer.removeChild(bookContainer.firstChild);
     }
@@ -98,7 +115,8 @@ function displayBooks() {
         titleDisplay.textContent = book.title;
         authorDisplay.textContent = book.author;
         pageDisplay.textContent = book.pages + ' pages';
-        isReadButton.textContent = 'Read';
+        /* isReadButton.textContent = 'Read'; */
+        book.readInfo(isReadButton);
         removeButton.textContent = 'Remove';
 
         removeButton.addEventListener('click', function (e) {
@@ -163,6 +181,8 @@ submitButton.addEventListener('click', (e) => {
 // Add errors when trying to submit a blank form
 
 // add character limits on inputs
+
+// make auto focus on title field when opening pop up form
 
 // Finish UI!!!!!!!!!!!!!
 
