@@ -23,6 +23,8 @@ input {
     color: inherit;
 }
 
+/* ----------HEADER---------- */
+
 .header {
     background-color: var(--primary-color);
     padding: 30px 150px;
@@ -69,6 +71,8 @@ input {
     transition: .2s;
 }
 
+/* ----------MAIN CONTENT---------- */
+
 .main-content {
     padding: 40px 200px;
 }
@@ -109,6 +113,8 @@ input {
     width: 150px;
 }
 
+/* ----------ADD BOOK BUTTON---------- */
+
 .add-book-btn {
     border: none;
     padding: 0;
@@ -142,7 +148,7 @@ input {
     filter: var(--icon-filter);
 }
 
-/* book card borders */
+/* ----------BOOK CARD BORDERS (MOVE THIS)---------- */
 
 .book-card {
     border-radius: 25px;
@@ -154,10 +160,12 @@ input {
     box-shadow: 2px 2px 5px var(--text-color);
 }
 
-/* pop-up form */
+/* ----------POP UP FORM---------- */
+
 .form-popup {
     display: none;
-    z-index: 9;
+    position: relative;
+    z-index: 10;
 }
 
 .blocker {

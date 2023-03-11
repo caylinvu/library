@@ -153,8 +153,6 @@ submitButton.addEventListener('click', (e) => {
 
 // add character limits on inputs
 
-// fix add new book button showing through
-
 // Finish UI!!!!!!!!!!!!!
 
 // Update add book animation if want to
