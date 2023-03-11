@@ -90,6 +90,7 @@ function displayBooks() {
 
         let isReadButton = document.createElement('button');
         let removeButton = document.createElement('button');
+        isReadButton.classList.add("is-read-btn");
         removeButton.classList.add("remove-btn");
         isReadDisplay.appendChild(isReadButton);
         removeDisplay.appendChild(removeButton);
@@ -101,8 +102,17 @@ function displayBooks() {
         removeButton.textContent = 'Remove';
 
         removeButton.addEventListener('click', function (e) {
+            /* console.log(index); */
             myLibrary.splice(index, 1);
-            bookContainer.removeChild(bookCard);
+
+            while(bookContainer.firstChild) {
+                bookContainer.removeChild(bookContainer.firstChild);
+            }
+        
+            displayBooks();
+            bookContainer.appendChild(addBookButton);
+            /* bookContainer.removeChild(bookCard); */
+            /* console.log(myLibrary); */
         });
     });
 }
@@ -130,6 +140,7 @@ function closeForm() {
 
 addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
+bookContainer.appendChild(addBookButton);
 displayBooks();
 
 // Adding books to library with submit
