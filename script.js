@@ -19,19 +19,39 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-Book.prototype.readInfo = function (button) {
+Book.prototype.initialReadInfo = function (button) {
     if (this.isRead == true) {
-        button.classList.remove("not-read");
+        // button.classList.remove("not-read");
         button.classList.add("has-read");
 
         button.textContent = 'Read';
     } else if (this.isRead == false) {
-        button.classList.remove("has-read");
+        // button.classList.remove("has-read");
         button.classList.add("not-read");
 
         button.textContent = 'Not Read';
     }
+    // console.log(this.isRead);
+}
+
+Book.prototype.populateReadInfo = function (button) {
+    if (this.isRead == true) {
+        button.classList.remove("has-read");
+        button.classList.add("not-read");
+
+        button.textContent = 'Not Read';
+        this.isRead = false;
+        console.log(this.isRead);
+    } else if (this.isRead == false) {
+        button.classList.remove("not-read");
+        button.classList.add("has-read");
+
+        button.textContent = 'Read';
+        this.isRead = true;
+        console.log(this.isRead);
+    }
     console.log(this);
+    // console.log(this.isRead);
 }
 
 /* Book.prototype.info = function () {
@@ -116,8 +136,12 @@ function displayBooks() {
         authorDisplay.textContent = book.author;
         pageDisplay.textContent = book.pages + ' pages';
         /* isReadButton.textContent = 'Read'; */
-        book.readInfo(isReadButton);
+        book.initialReadInfo(isReadButton);
         removeButton.textContent = 'Remove';
+
+        isReadButton.addEventListener('click', () => {
+            book.populateReadInfo(isReadButton);
+        });
 
         removeButton.addEventListener('click', function (e) {
             /* console.log(index); */
@@ -175,8 +199,6 @@ submitButton.addEventListener('click', (e) => {
 
 
 // TO DO!!!!!
-
-// Make read button change when clicked
 
 // Add errors when trying to submit a blank form
 
