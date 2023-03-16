@@ -61,7 +61,7 @@ input {
 }
 
 .log-in-btn:hover {
-    background-color: rgb(173, 231, 146, .75);
+    background-color: rgb(173, 231, 146, .70);
     cursor: pointer;
     transition: .2s;
 }
@@ -122,7 +122,7 @@ input {
 }
 
 .has-read:hover {
-    background-color: rgb(110, 204, 175, .75);
+    background-color: rgb(110, 204, 175, .70);
     cursor: pointer;
     transition: .2s;
 }
@@ -137,7 +137,7 @@ input {
 
 .not-read:hover,
 .remove-btn:hover {
-    background-color: rgb(243, 236, 176, .75);
+    background-color: rgb(243, 236, 176, .70);
     cursor: pointer;
     transition: .2s;
 }
@@ -152,7 +152,7 @@ input {
 }
 
 .add-book-btn:hover {
-    background-color: rgb(110, 204, 175, .75);
+    background-color: rgb(110, 204, 175, .70);
     cursor: pointer;
     transition: .2s;
 }
@@ -216,6 +216,7 @@ input {
     text-align: center;
     background-color: var(--primary-color);
     font-size: 18px;
+    border-radius: 20px;
 }
 
 .close-container {
@@ -254,6 +255,13 @@ input {
 .text-input,
 .number-input {
     padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.text-input:focus,
+.number-input:focus {
+    outline: none;
 }
 
 .checkbox-container {
@@ -266,4 +274,23 @@ input {
     width: 20px;
     margin: 0;
     vertical-align: middle;
+}
+
+/* .checkbox-input:checked {
+    background-color: white;
+    color: var(--text-color);
+} */
+
+#submit-btn {
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 10px 0px;
+    width: 251px;
+}
+
+#submit-btn:hover {
+    background-color: rgb(243, 236, 176, .70);
+    cursor: pointer;
+    transition: .2s;
 }

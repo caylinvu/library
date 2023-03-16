@@ -173,6 +173,7 @@ addBookButton.setAttribute('onclick', 'openForm()');
 // function to display pop up form
 function openForm() {
     form.style.display = "block";
+    titleInput.focus();
 }
 
 // function to close pop up form
@@ -204,7 +205,7 @@ submitButton.addEventListener('click', (e) => {
 
 // add character limits on inputs
 
-// make auto focus on title field when opening pop up form
+// format checkbox on pop up form
 
 // Finish UI!!!!!!!!!!!!!
 
