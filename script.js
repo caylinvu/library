@@ -57,7 +57,7 @@ Book.prototype.populateReadInfo = function (button) {
         this.isRead = true;
         console.log(this.isRead);
     }
-    console.log(this);
+    countBooks();
     // console.log(this.isRead);
 }
 
