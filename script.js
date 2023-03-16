@@ -184,6 +184,10 @@ function openForm() {
 // function to close pop up form
 function closeForm() {
     formPopup.style.display = "none";
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    isReadInput.checked = false;
 }
 
 addBookButton.appendChild(plusImage);
@@ -206,14 +210,3 @@ submitButton.addEventListener('click', (e) => {
         isReadInput.checked = false;
     }
 });
-
-
-// TO DO!!!!!
-
-// Finish UI!!!!!!!!!!!!!
-
-// Update add book animation if want to
-
-// Add date completed???
-
-// add mobile support

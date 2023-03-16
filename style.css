@@ -4,15 +4,17 @@
     --background-color: #F3ECB0;
     --read: #6ECCAF;
     --not-read: #f09393;
-    --text-color: #4e3467;
-    --icon-filter: invert(28%) sepia(10%) saturate(2262%) hue-rotate(170deg) brightness(86%) contrast(85%);
+    --border-color: #ccc692;
+    --main-text-color: #344D67;
+    --secondary-text-color: #2b435c;
+    --icon-filter: invert(28%) sepia(17%) saturate(1047%) hue-rotate(170deg) brightness(96%) contrast(95%);
 }
 
 body {
     margin: 0;
     font-family:'Courier New', Courier, monospace;
     background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--main-text-color);
     font-size: 18px;
 }
 
@@ -27,12 +29,12 @@ input {
 
 .header {
     background-color: var(--primary-color);
-    padding: 30px 150px;
+    padding: 30px 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-    width:
+    box-shadow: 0px 2px 5px var(--border-color);
 }
 
 .logo-container {
@@ -57,7 +59,8 @@ input {
     background-color: var(--secondary-color);
     border-radius: 10px;
     padding: 15px 20px;
-    font-weight: bold;
+    color: var(--secondary-text-color);
+    white-space: nowrap;
 }
 
 .log-in-btn:hover {
@@ -74,7 +77,7 @@ input {
 /* ----------MAIN CONTENT---------- */
 
 .main-content {
-    padding: 40px 200px;
+    padding: 40px 15%;
 }
 
 .book-container {
@@ -94,6 +97,7 @@ input {
     align-items: center;
     justify-content: space-between;
     padding: 30px 20px;
+    color: var(--secondary-text-color);
 }
 
 .display {
@@ -118,7 +122,6 @@ input {
     border-radius: 10px;
     padding: 10px 0px;
     width: 260px;
-    
 }
 
 .has-read {
@@ -183,14 +186,10 @@ input {
 
 /* ----------BOOK CARD BORDERS (MOVE THIS)---------- */
 
-.book-card {
-    border-radius: 25px;
-    box-shadow: 2px 2px 5px var(--primary-color);
-}
-
+.book-card,
 .add-book-btn {
     border-radius: 25px;
-    box-shadow: 2px 2px 5px var(--text-color);
+    box-shadow: 2px 2px 5px var(--border-color);
 }
 
 /* ----------POP UP FORM---------- */
@@ -221,6 +220,12 @@ input {
     background-color: var(--primary-color);
     font-size: 18px;
     border-radius: 20px;
+    color: var(--secondary-text-color);
+}
+
+.close-btn,
+.form-title {
+    color: var(--main-text-color);
 }
 
 .close-container {
@@ -258,7 +263,7 @@ input {
 
 .text-input,
 .number-input {
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
 }
@@ -280,11 +285,6 @@ input {
     vertical-align: middle;
 }
 
-/* .checkbox-input:checked {
-    background-color: white;
-    color: var(--text-color);
-} */
-
 #submit-btn {
     border: none;
     background-color: var(--background-color);
@@ -297,4 +297,26 @@ input {
     background-color: rgb(243, 236, 176, .70);
     cursor: pointer;
     transition: .2s;
+}
+
+@media screen and (max-width: 950px) {
+    .header {
+        /* padding: 30px 0px; */
+        padding: 30px 5%;
+    }
+
+    .main-content {
+        /* padding: 40px 25px; */
+        padding: 40px 10%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .logo-container {
+        white-space: nowrap;
+    }
 }
