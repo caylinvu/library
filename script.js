@@ -1,5 +1,6 @@
 const bookContainer = document.querySelector('.book-container');
-const form = document.querySelector('.form-popup');
+const formPopup = document.querySelector('.form-popup');
+const form = document.querySelector('.form-container');
 const titleInput = document.getElementById('title');
 const authorInput = document.getElementById('author');
 const pagesInput = document.getElementById('pages');
@@ -125,6 +126,10 @@ function displayBooks() {
         buttonContainer.appendChild(isReadDisplay);
         buttonContainer.appendChild(removeDisplay);
 
+        titleDisplay.classList.add("display");
+        authorDisplay.classList.add("display");
+        pageDisplay.classList.add("display");
+
         let isReadButton = document.createElement('button');
         let removeButton = document.createElement('button');
         isReadButton.classList.add("is-read-btn");
@@ -172,13 +177,13 @@ addBookButton.setAttribute('onclick', 'openForm()');
 
 // function to display pop up form
 function openForm() {
-    form.style.display = "block";
+    formPopup.style.display = "block";
     titleInput.focus();
 }
 
 // function to close pop up form
 function closeForm() {
-    form.style.display = "none";
+    formPopup.style.display = "none";
 }
 
 addBookButton.appendChild(plusImage);
@@ -188,24 +193,22 @@ displayBooks();
 
 // Adding books to library with submit
 submitButton.addEventListener('click', (e) => {
-    addBookToLibrary();
-    closeForm();
-    e.preventDefault();
+    if (!form.checkValidity()) {
+        form.reportValidity();
+    } else {
+        addBookToLibrary();
+        closeForm();
+        e.preventDefault();
 
-    titleInput.value = '';
-    authorInput.value = '';
-    pagesInput.value = '';
-    isReadInput.checked = false;
+        titleInput.value = '';
+        authorInput.value = '';
+        pagesInput.value = '';
+        isReadInput.checked = false;
+    }
 });
 
 
 // TO DO!!!!!
-
-// Add errors when trying to submit a blank form
-
-// add character limits on inputs
-
-// format checkbox on pop up form
 
 // Finish UI!!!!!!!!!!!!!
 

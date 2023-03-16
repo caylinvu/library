@@ -96,6 +96,10 @@ input {
     padding: 30px 20px;
 }
 
+.display {
+    word-break: break-word;
+}
+
 .book-info,
 .button-container {
     text-align: center;
