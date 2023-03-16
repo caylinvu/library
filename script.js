@@ -6,11 +6,17 @@ const authorInput = document.getElementById('author');
 const pagesInput = document.getElementById('pages');
 const isReadInput = document.getElementById('is-read');
 const submitButton = document.getElementById('submit-btn');
+const booksRead = document.querySelector('.books-read');
+const booksUnread = document.querySelector('.books-unread');
+const totalBooks = document.querySelector('.total-books');
 let myLibrary = [];
 let title = '';
 let author = '';
 let pages = '';
 let isRead = '';
+let booksReadCount = '';
+let booksUnreadCount = '';
+let totalBooksCount = '';
 
 // object constructor function
 function Book(title, author, pages, isRead) {
@@ -94,6 +100,7 @@ function addBookToLibrary() {
     }
 
     displayBooks();
+    countBooks();
     // console.log(newBook);
     // console.log(newBook.info());
     // console.log(myLibrary);
@@ -105,8 +112,8 @@ function displayBooks() {
     myLibrary.forEach((book, index) => {
         let bookCard = document.createElement('div');
         bookCard.classList.add("book-card");
-        bookContainer.appendChild(bookCard);
-        bookContainer.appendChild(addBookButton);
+        bookContainer.prepend(bookCard);
+        bookContainer.prepend(addBookButton);
 
         let bookInfo = document.createElement('div');
         let buttonContainer = document.createElement('div');
@@ -157,7 +164,8 @@ function displayBooks() {
             }
         
             displayBooks();
-            bookContainer.appendChild(addBookButton);
+            countBooks();
+            bookContainer.prepend(addBookButton);
             /* bookContainer.removeChild(bookCard); */
             /* console.log(myLibrary); */
         });
@@ -192,7 +200,7 @@ function closeForm() {
 
 addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
-bookContainer.appendChild(addBookButton);
+bookContainer.prepend(addBookButton);
 displayBooks();
 
 // Adding books to library with submit
@@ -210,3 +218,34 @@ submitButton.addEventListener('click', (e) => {
         isReadInput.checked = false;
     }
 });
+
+// BOOK COUNTS -- need to make into function then implement under add and remove book functions
+
+function countBooks() {
+    booksReadCount = '';
+    booksUnreadCount = '';
+
+    myLibrary.forEach((book) => {
+        if (book.isRead == true) {
+            booksReadCount++;
+        } else if (book.isRead == false) {
+            booksUnreadCount++;
+        }
+    });
+
+    if (booksReadCount < 1) {
+        booksReadCount = 0;
+    }
+
+    if (booksUnreadCount < 1) {
+        booksUnreadCount = 0;
+    }
+    
+    totalBooksCount = myLibrary.length;
+    
+    booksRead.textContent = "Books Read: " + booksReadCount;
+    booksUnread.textContent = "Books Unread: " + booksUnreadCount;
+    totalBooks.textContent = "Total Books: " + totalBooksCount;
+}
+
+countBooks();
