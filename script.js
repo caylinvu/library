@@ -1,3 +1,4 @@
+// initialize variables
 const bookContainer = document.querySelector('.book-container');
 const formPopup = document.querySelector('.form-popup');
 const form = document.querySelector('.form-container');
@@ -9,7 +10,7 @@ const submitButton = document.getElementById('submit-btn');
 const booksRead = document.querySelector('.books-read');
 const booksUnread = document.querySelector('.books-unread');
 const totalBooks = document.querySelector('.total-books');
-let myLibrary = [];
+const myLibrary = [];
 let title = '';
 let author = '';
 let pages = '';
@@ -18,62 +19,17 @@ let booksReadCount = '';
 let booksUnreadCount = '';
 let totalBooksCount = '';
 
-// object constructor function
+
+// function to create a new book object
 function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.isRead = isRead;
 }
 
-Book.prototype.initialReadInfo = function (button) {
-    if (this.isRead == true) {
-        // button.classList.remove("not-read");
-        button.classList.add("has-read");
 
-        button.textContent = 'Read';
-    } else if (this.isRead == false) {
-        // button.classList.remove("has-read");
-        button.classList.add("not-read");
-
-        button.textContent = 'Not Read';
-    }
-    // console.log(this.isRead);
-}
-
-Book.prototype.populateReadInfo = function (button) {
-    if (this.isRead == true) {
-        button.classList.remove("has-read");
-        button.classList.add("not-read");
-
-        button.textContent = 'Not Read';
-        this.isRead = false;
-        console.log(this.isRead);
-    } else if (this.isRead == false) {
-        button.classList.remove("not-read");
-        button.classList.add("has-read");
-
-        button.textContent = 'Read';
-        this.isRead = true;
-        console.log(this.isRead);
-    }
-    countBooks();
-    // console.log(this.isRead);
-}
-
-/* Book.prototype.info = function () {
-    switch(this.isRead) {
-        case "true":
-            return this.title + " by " + this.author + ", " + this.pages + " pages, read";
-            break;
-        case "false":
-            return this.title + " by " + this.author + ", " + this.pages + " pages, not read yet";
-            break;
-        default:
-            return "Book info is not valid";
-    }
-} */
-
+// initialize temporary book variables and add to myLibrary[]
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', false);
 const gameOfThrones = new Book('A Game of Thrones', 'George R.R. Martin', '694', false);
 const eyeOfTheWorld = new Book('The Eye of the World', 'Robert Jordan', '832', true);
@@ -84,168 +40,190 @@ const sixthExtinction = new Book('The Sixth Extinction', 'Elizabeth Kolbert', '2
 
 myLibrary.push(theHobbit, gameOfThrones, eyeOfTheWorld, wildBuilt, moreOfLess, dinosaurs, sixthExtinction);
 
-// function to prompt user to add a book to the library
-function addBookToLibrary() {
-    title = titleInput.value;
-    author = authorInput.value;
-    pages = pagesInput.value;
-    isRead = isReadInput.checked;
-    /* console.log(isRead); */
-    const newBook = new Book(title, author, pages, isRead);
-    myLibrary.push(newBook);
-    /* console.log(newBook); */
 
-    while(bookContainer.firstChild) {
-        bookContainer.removeChild(bookContainer.firstChild);
+// function to update book counts
+function updateBookCounts() {
+  booksReadCount = '';
+  booksUnreadCount = '';
+
+  myLibrary.forEach((book) => {
+    if (book.isRead === true) {
+      booksReadCount++;
+    } else if (book.isRead === false) {
+      booksUnreadCount++;
     }
+  });
 
-    displayBooks();
-    countBooks();
-    // console.log(newBook);
-    // console.log(newBook.info());
-    // console.log(myLibrary);
+  if (booksReadCount < 1) {
+    booksReadCount = 0;
+  }
+
+  if (booksUnreadCount < 1) {
+    booksUnreadCount = 0;
+  }
+
+  totalBooksCount = myLibrary.length;
+
+  booksRead.textContent = `Books Read: ${booksReadCount}`;
+  booksUnread.textContent = `Books Unread: ${booksUnreadCount}`;
+  totalBooks.textContent = `Total Books: ${totalBooksCount}`;
 }
+
+
+// function to display initial read information of a book
+Book.prototype.initialReadInfo = function (button) {
+  if (this.isRead === true) {
+    button.classList.add('has-read');
+    button.textContent = 'Read';
+  } else if (this.isRead === false) {
+    button.classList.add('not-read');
+    button.textContent = 'Not Read';
+  }
+};
+
+
+// function to toggle between "read" and "not read" on a book that's already displayed
+Book.prototype.populateReadInfo = function (button) {
+  if (this.isRead === true) {
+    button.classList.remove('has-read');
+    button.classList.add('not-read');
+    button.textContent = 'Not Read';
+    this.isRead = false;
+  } else if (this.isRead === false) {
+    button.classList.remove('not-read');
+    button.classList.add('has-read');
+    button.textContent = 'Read';
+    this.isRead = true;
+  }
+  updateBookCounts();
+};
+
+
+// create add book button
+const addBookButton = document.createElement('button');
+addBookButton.classList.add('add-book-btn');
+const buttonText = document.createElement('div');
+buttonText.textContent = 'Add Book';
+const plusImage = document.createElement('img');
+plusImage.src = 'images/plus.svg';
+addBookButton.appendChild(plusImage);
+addBookButton.appendChild(buttonText);
 
 // function to loop through array of books and display each book
 function displayBooks() {
-    // *NOTE* maybe change to forEach() loop so I can use index of the library array to remove books
-    myLibrary.forEach((book, index) => {
-        let bookCard = document.createElement('div');
-        bookCard.classList.add("book-card");
-        bookContainer.prepend(bookCard);
-        bookContainer.prepend(addBookButton);
+  myLibrary.forEach((book, index) => {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book-card');
+    bookContainer.prepend(bookCard);
+    bookContainer.prepend(addBookButton);
 
-        let bookInfo = document.createElement('div');
-        let buttonContainer = document.createElement('div');
-        bookInfo.classList.add("book-info");
-        buttonContainer.classList.add("button-container");
-        bookCard.appendChild(bookInfo);
-        bookCard.appendChild(buttonContainer);
+    const bookInfo = document.createElement('div');
+    const buttonContainer = document.createElement('div');
+    bookInfo.classList.add('book-info');
+    buttonContainer.classList.add('button-container');
+    bookCard.appendChild(bookInfo);
+    bookCard.appendChild(buttonContainer);
 
-        let titleDisplay = document.createElement('div');
-        let authorDisplay = document.createElement('div');
-        let pageDisplay = document.createElement('div');
-        let isReadDisplay = document.createElement('div');
-        let removeDisplay = document.createElement('div');
-        bookInfo.appendChild(titleDisplay);
-        bookInfo.appendChild(authorDisplay);
-        bookInfo.appendChild(pageDisplay);
-        buttonContainer.appendChild(isReadDisplay);
-        buttonContainer.appendChild(removeDisplay);
+    const titleDisplay = document.createElement('div');
+    const authorDisplay = document.createElement('div');
+    const pageDisplay = document.createElement('div');
+    const isReadDisplay = document.createElement('div');
+    const removeDisplay = document.createElement('div');
+    bookInfo.appendChild(titleDisplay);
+    bookInfo.appendChild(authorDisplay);
+    bookInfo.appendChild(pageDisplay);
+    buttonContainer.appendChild(isReadDisplay);
+    buttonContainer.appendChild(removeDisplay);
 
-        titleDisplay.classList.add("display");
-        authorDisplay.classList.add("display");
-        pageDisplay.classList.add("display");
+    titleDisplay.classList.add('display');
+    authorDisplay.classList.add('display');
+    pageDisplay.classList.add('display');
 
-        let isReadButton = document.createElement('button');
-        let removeButton = document.createElement('button');
-        isReadButton.classList.add("is-read-btn");
-        removeButton.classList.add("remove-btn");
-        isReadDisplay.appendChild(isReadButton);
-        removeDisplay.appendChild(removeButton);
+    const isReadButton = document.createElement('button');
+    const removeButton = document.createElement('button');
+    isReadButton.classList.add('is-read-btn');
+    removeButton.classList.add('remove-btn');
+    isReadDisplay.appendChild(isReadButton);
+    removeDisplay.appendChild(removeButton);
 
-        titleDisplay.textContent = book.title;
-        authorDisplay.textContent = book.author;
-        pageDisplay.textContent = book.pages + ' pages';
-        /* isReadButton.textContent = 'Read'; */
-        book.initialReadInfo(isReadButton);
-        removeButton.textContent = 'Remove';
+    titleDisplay.textContent = book.title;
+    authorDisplay.textContent = book.author;
+    pageDisplay.textContent = `${book.pages} pages`;
+    book.initialReadInfo(isReadButton);
+    removeButton.textContent = 'Remove';
 
-        isReadButton.addEventListener('click', () => {
-            book.populateReadInfo(isReadButton);
-        });
-
-        removeButton.addEventListener('click', function (e) {
-            /* console.log(index); */
-            myLibrary.splice(index, 1);
-
-            while(bookContainer.firstChild) {
-                bookContainer.removeChild(bookContainer.firstChild);
-            }
-        
-            displayBooks();
-            countBooks();
-            bookContainer.prepend(addBookButton);
-            /* bookContainer.removeChild(bookCard); */
-            /* console.log(myLibrary); */
-        });
+    isReadButton.addEventListener('click', () => {
+      book.populateReadInfo(isReadButton);
     });
+
+    removeButton.addEventListener('click', () => {
+      myLibrary.splice(index, 1);
+      updateBookDisplay();
+      bookContainer.prepend(addBookButton);
+    });
+  });
 }
 
-// create add book button
-let addBookButton = document.createElement('button');
-addBookButton.classList.add("add-book-btn");
-let buttonText = document.createElement('div');
-buttonText.textContent = 'Add Book';
-let plusImage = document.createElement('img');
-plusImage.src = "images/plus.svg";
 
-// create pop up form
-addBookButton.setAttribute('onclick', 'openForm()');
+// function to update book display
+function updateBookDisplay() {
+  while (bookContainer.firstChild) {
+    bookContainer.removeChild(bookContainer.firstChild);
+  }
+  displayBooks();
+  updateBookCounts();
+}
+
+
+// function to add a new book to the library
+function addBookToLibrary() {
+  title = titleInput.value;
+  author = authorInput.value;
+  pages = pagesInput.value;
+  isRead = isReadInput.checked;
+
+  const newBook = new Book(title, author, pages, isRead);
+  myLibrary.push(newBook);
+  updateBookDisplay();
+}
+
 
 // function to display pop up form
 function openForm() {
-    formPopup.style.display = "block";
-    titleInput.focus();
+  formPopup.style.display = 'block';
+  titleInput.focus();
 }
+
 
 // function to close pop up form
 function closeForm() {
-    formPopup.style.display = "none";
+  formPopup.style.display = 'none';
+  titleInput.value = '';
+  authorInput.value = '';
+  pagesInput.value = '';
+  isReadInput.checked = false;
+}
+
+
+// set on click attribute to open the pop up form on the add book button
+addBookButton.setAttribute('onclick', 'openForm()');
+
+
+// event listener to add book to the library when submit is clicked on the pop up form
+submitButton.addEventListener('click', (e) => {
+  if (!form.checkValidity()) {
+    form.reportValidity();
+  } else {
+    addBookToLibrary();
+    closeForm();
+    e.preventDefault();
+
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
     isReadInput.checked = false;
-}
-
-addBookButton.appendChild(plusImage);
-addBookButton.appendChild(buttonText);
-bookContainer.prepend(addBookButton);
-displayBooks();
-
-// Adding books to library with submit
-submitButton.addEventListener('click', (e) => {
-    if (!form.checkValidity()) {
-        form.reportValidity();
-    } else {
-        addBookToLibrary();
-        closeForm();
-        e.preventDefault();
-
-        titleInput.value = '';
-        authorInput.value = '';
-        pagesInput.value = '';
-        isReadInput.checked = false;
-    }
+  }
 });
 
-// BOOK COUNTS -- need to make into function then implement under add and remove book functions
 
-function countBooks() {
-    booksReadCount = '';
-    booksUnreadCount = '';
-
-    myLibrary.forEach((book) => {
-        if (book.isRead == true) {
-            booksReadCount++;
-        } else if (book.isRead == false) {
-            booksUnreadCount++;
-        }
-    });
-
-    if (booksReadCount < 1) {
-        booksReadCount = 0;
-    }
-
-    if (booksUnreadCount < 1) {
-        booksUnreadCount = 0;
-    }
-    
-    totalBooksCount = myLibrary.length;
-    
-    booksRead.textContent = "Books Read: " + booksReadCount;
-    booksUnread.textContent = "Books Unread: " + booksUnreadCount;
-    totalBooks.textContent = "Total Books: " + totalBooksCount;
-}
-
-countBooks();
+updateBookDisplay();
