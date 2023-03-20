@@ -109,6 +109,7 @@ plusImage.src = 'images/plus.svg';
 addBookButton.appendChild(plusImage);
 addBookButton.appendChild(buttonText);
 
+
 // function to loop through array of books and display each book
 function displayBooks() {
   myLibrary.forEach((book, index) => {
